@@ -1,0 +1,52 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const books = await getCollection("books");
+const wishlist = books.filter((book) => book.data.status === "wishlist");
+const reading = books.filter((book) => book.data.status === "reading");
+const completed = books.filter((book) => book.data.status === "completed");
+---
+
+<BaseLayout title="Books | Allie" description="Book wishlist and reading progress.">
+  <p class="eyebrow">book tracker</p>
+  <h1>Books</h1>
+
+  <section class="stack">
+    <h2>Currently Reading</h2>
+    {
+      reading.length ? (
+        reading.map((book) => (
+          <article class="card">
+            <h3>{book.data.title}</h3>
+            <p class="muted">by {book.data.author}</p>
+            <p>Progress: {book.data.progress}%</p>
+            {book.data.notes && <p>{book.data.notes}</p>}
+          </article>
+        ))
+      ) : (
+        <p class="muted">No active reads right now.</p>
+      )
+    }
+  </section>
+
+  <section class="stack">
+    <h2>Wishlist</h2>
+    {wishlist.map((book) => (
+      <article class="card">
+        <h3>{book.data.title}</h3>
+        <p class="muted">by {book.data.author}</p>
+      </article>
+    ))}
+  </section>
+
+  <section class="stack">
+    <h2>Completed</h2>
+    {completed.map((book) => (
+      <article class="card">
+        <h3>{book.data.title}</h3>
+        <p class="muted">by {book.data.author}</p>
+      </article>
+    ))}
+  </section>
+</BaseLayout>

@@ -1,0 +1,34 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const latestPosts = (await getCollection("blog", ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
+---
+
+<BaseLayout title="Allie's Blog" description="A simple static blog for thoughts, books, and projects.">
+  <p class="eyebrow">developer notes</p>
+  <h1>Hi, I am Allie.</h1>
+  <p>
+    This is my corner of the internet for writing, tracking books I want to read, and sharing
+    projects I am building.
+  </p>
+
+  <section>
+    <h2>Latest Posts</h2>
+    <div class="stack">
+      {
+        latestPosts.map((post) => (
+          <article class="card">
+            <h3>
+              <a href={`/blog/${post.id}/`}>{post.data.title}</a>
+            </h3>
+            <p class="muted">{post.data.date.toLocaleDateString()}</p>
+            <p>{post.data.description}</p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>
