@@ -12,17 +12,6 @@ const blog = defineCollection({
   }),
 });
 
-const books = defineCollection({
-  loader: glob({ pattern: "**/*.md", base: "./src/content/books" }),
-  schema: z.object({
-    title: z.string(),
-    author: z.string(),
-    status: z.enum(["wishlist", "reading", "completed"]),
-    progress: z.number().min(0).max(100),
-    notes: z.string().optional(),
-  }),
-});
-
 const projects = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/projects" }),
   schema: z.object({
@@ -35,4 +24,4 @@ const projects = defineCollection({
   }),
 });
 
-export const collections = { blog, books, projects };
+export const collections = { blog, projects };
