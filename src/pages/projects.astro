@@ -8,9 +8,6 @@ const projects = (await getCollection("projects")).sort(
 ---
 
 <BaseLayout title="Projects | Allie" description="Projects and experiments I am building.">
-  <p class="eyebrow">build log</p>
-  <h1>Projects</h1>
-
   <div class="stack">
     {
       projects.map((project) => (

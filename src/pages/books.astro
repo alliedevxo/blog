@@ -1,27 +1,43 @@
 ---
-import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import booksData from "../data/books.json";
 
-const books = await getCollection("books");
-const wishlist = books.filter((book) => book.data.status === "wishlist");
-const reading = books.filter((book) => book.data.status === "reading");
-const completed = books.filter((book) => book.data.status === "completed");
+interface ReadingBook {
+  title: string;
+  author: string;
+  progress: number;
+  notes?: string;
+}
+
+interface WishlistBook {
+  title: string;
+  author: string;
+  priority?: string;
+  notes?: string;
+}
+
+interface CompletedBook {
+  title: string;
+  author: string;
+  notes?: string;
+}
+
+const currentlyReading = booksData.currentlyReading as ReadingBook[];
+const wishlist = booksData.wishlist as WishlistBook[];
+const completed = booksData.completed as CompletedBook[];
 ---
 
 <BaseLayout title="Books | Allie" description="Book wishlist and reading progress.">
-  <p class="eyebrow">book tracker</p>
-  <h1>Books</h1>
-
   <section class="stack">
     <h2>Currently Reading</h2>
     {
-      reading.length ? (
-        reading.map((book) => (
+      currentlyReading.length ? (
+        currentlyReading.map((book) => (
           <article class="card">
-            <h3>{book.data.title}</h3>
-            <p class="muted">by {book.data.author}</p>
-            <p>Progress: {book.data.progress}%</p>
-            {book.data.notes && <p>{book.data.notes}</p>}
+            <h3>{book.title}</h3>
+            <p class="muted">by {book.author}</p>
+            <p>Progress: {book.progress}%</p>
+            {book.notes && <p>{book.notes}</p>}
           </article>
         ))
       ) : (
@@ -32,21 +48,36 @@ const completed = books.filter((book) => book.data.status === "completed");
 
   <section class="stack">
     <h2>Wishlist</h2>
-    {wishlist.map((book) => (
-      <article class="card">
-        <h3>{book.data.title}</h3>
-        <p class="muted">by {book.data.author}</p>
-      </article>
-    ))}
+    {
+      wishlist.length ? (
+        wishlist.map((book) => (
+          <article class="card">
+            <h3>{book.title}</h3>
+            <p class="muted">by {book.author}</p>
+            {book.priority && <p>Priority: {book.priority}</p>}
+            {book.notes && <p>{book.notes}</p>}
+          </article>
+        ))
+      ) : (
+        <p class="muted">Wishlist is empty.</p>
+      )
+    }
   </section>
 
   <section class="stack">
     <h2>Completed</h2>
-    {completed.map((book) => (
-      <article class="card">
-        <h3>{book.data.title}</h3>
-        <p class="muted">by {book.data.author}</p>
-      </article>
-    ))}
+    {
+      completed.length ? (
+        completed.map((book) => (
+          <article class="card">
+            <h3>{book.title}</h3>
+            <p class="muted">by {book.author}</p>
+            {book.notes && <p>{book.notes}</p>}
+          </article>
+        ))
+      ) : (
+        <p class="muted">No completed books yet.</p>
+      )
+    }
   </section>
 </BaseLayout>

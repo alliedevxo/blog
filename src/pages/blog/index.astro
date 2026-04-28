@@ -8,8 +8,6 @@ const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
 ---
 
 <BaseLayout title="Blog | Allie">
-  <p class="eyebrow">all posts</p>
-  <h1>Blog</h1>
   <div class="stack">
     {
       posts.map((post) => (

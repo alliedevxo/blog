@@ -28,7 +28,7 @@ npm run preview
 Add content files under `src/content/`:
 
 - `src/content/blog/*.md` for posts
-- `src/content/books/*.md` for books
+- `src/data/books.json` for books
 - `src/content/projects/*.md` for projects
 
 ### Blog frontmatter
@@ -43,16 +43,20 @@ draft: false
 ---
 ```
 
-### Books frontmatter
+### Books JSON shape
 
-```md
----
-title: "Book title"
-author: "Author Name"
-status: "wishlist" # wishlist | reading | completed
-progress: 0 # 0-100
-notes: "Optional reading notes"
----
+```json
+{
+  "currentlyReading": [
+    { "title": "Book title", "author": "Author Name", "progress": 40, "notes": "Optional notes" }
+  ],
+  "wishlist": [
+    { "title": "Book title", "author": "Author Name", "priority": "high", "notes": "Optional notes" }
+  ],
+  "completed": [
+    { "title": "Book title", "author": "Author Name", "notes": "Optional notes" }
+  ]
+}
 ```
 
 ### Projects frontmatter

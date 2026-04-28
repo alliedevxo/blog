@@ -1,0 +1,64 @@
+{
+  "currentlyReading": [
+    {
+      "title": "Staff Engineer: Leadership beyond the management track",
+      "author": "Will Larson",
+      "progress": 30
+    },
+    {
+      "title": "Fundamentals of Software Architecture",
+      "author": "Mark Richards, Neal Ford",
+      "progress": 15
+    },
+    {
+      "title": "SQL Performance Explained",
+      "author": "Markus Winand",
+      "progress": 20
+    }
+  ],
+  "wishlist": [
+    {
+      "title": "Designing Data-Intensive Applications (2nd Edition)",
+      "author": "Martin Kleppmann",
+      "priority": "high"
+    },
+    {
+      "title": "Software Architecture: The Hard Parts",
+      "author": "Neal Ford, Mark Richards, Pramod Sadalage, Zhamak Dehghani"
+    },
+    {
+      "title": "Domain-Driven Design",
+      "author": "Eric Evans"
+    },
+    {
+      "title": "Working Effectively with Legacy Code",
+      "author": "Michael Feathers"
+    },
+    {
+      "title": "Refactoring",
+      "author": "Martin Fowler"
+    },
+    {
+      "title": "Site Reliability Engineering",
+      "author": "Betsy Beyer, Chris Jones, Jennifer Petoff, Niall Richard Murphy"
+    }
+  ],
+  "completed": [
+    {
+      "title": "Clean Code",
+      "author": "Robert C. Martin"
+    },
+    {
+      "title": "Code Complete",
+      "author": "Steve McConnell"
+    },
+    {
+      "title": "Code",
+      "author": "Charles Petzold"
+    },
+    {
+      "title": "AI Engineering",
+      "author": "Chip Huyen"
+    }
+  ]
+}
