@@ -1,6 +1,7 @@
 ---
-name: "Allie Blog"
-summary: "This Astro site for writing, reading progress, and project updates."
+name: "Allie's Blog"
+summary: "Astro site for writing, capturing my reading progress, and project updates."
 tech: ["Astro", "TypeScript", "Markdown"]
-featured: true
+repo: "https://github.com/alliedevxo/blog"
+featured: false
 ---
